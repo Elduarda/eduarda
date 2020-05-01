@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileCamoes.View.MainView"
+             xmlns:behavior="clr-namespace:MobileCamoes.Behavior"
+             xmlns:trigger="clr-namespace:MobileCamoes.Triggers"
+             Title="Eduarda Costa" BackgroundColor="#000000" Padding="5">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#Gray">
+            <ListView ItemsSource="{Binding Items}"
+                      HorizontalOptions="FillAndExpand"
+                      VerticalOptions="FillAndExpand"
+                      SeparatorVisibility="None"
+                      behavior:AttachedItemTappedBehavior.Command="{Binding ItemClickCommand}"
+                      IsPullToRefreshEnabled="True"
+                      RowHeight="100">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout x:Name="layoutCelula"
+                                         Margin="0,0,0,5"
+                                         BackgroundColor="Gray"
+                                         HorizontalOptions="FillAndExpand"
+                                         VerticalOptions="FillAndExpand">
+                                <RelativeLayout>
+                                    <Image x:Name="imgFoto" Source="{Binding BackDrop}"
+                                           HorizontalOptions="FillAndExpand"
+                                           VerticalOptions="FillAndExpand"
+                                           Aspect="AspectFill"
+                                            RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                                            RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}"/>
+                                    <Label Text="{Binding Name}"
+                                       BackgroundColor="Black"
+                                       TextColor="Accent"
+                                       FontAttributes="Italic"
+                                       FontSize="16"
+                                       Opacity="0.5" 
+                                       HorizontalOptions="Start"
+                                       VerticalOptions="CenterAndExpand"
+                                       HeightRequest="40"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="Center"
+                                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, ElementName=imgFoto, Property=Width}"
+                                       RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, ElementName=imgFoto, Factor=0.2,Constant=0}"/>
+                                    <Label Text="{Binding Genres}"
+                                       BackgroundColor="Black"
+                                       TextColor="Accent"
+                                       FontAttributes="Italic"
+                                       FontSize="16"
+                                       Opacity="0.5" 
+                                       HorizontalOptions="Start"
+                                       VerticalOptions="Center"
+                                       Margin="0,50,0,0"
+                                       HeightRequest="40"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="Center"
+                                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, ElementName=imgFoto, Property=Width}"
+                                       RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, ElementName=imgFoto, Factor=0.2,Constant=0}"/>
+                                </RelativeLayout>
+
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
